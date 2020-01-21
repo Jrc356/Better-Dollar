@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-filename-extension */
-
 import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import Head from 'next/head';
@@ -13,10 +12,9 @@ function App() {
       <div className="App">
         <Head>
           <title>Better Dollar</title>
-          <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+          <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js" />
         </Head>
         <TopBar />
-        <br />
         <Home />
       </div>
     </ThemeProvider>
