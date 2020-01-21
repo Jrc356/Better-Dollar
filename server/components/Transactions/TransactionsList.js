@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, List } from '@material-ui/core';
 import Transaction from './Transaction';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   grid: {
     flexGrow: 1,
     position: 'fixed',
