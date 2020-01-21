@@ -2,10 +2,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Fab, Grid } from '@material-ui/core';
+import Budget from './Budget/Budget';
+import TransactionsList from './Transactions/TransactionsList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    paddingTop: 50,
   },
 }));
 
@@ -38,8 +41,10 @@ export default function Home() {
 
   return (
     <div className={classes.root}>
-      <Grid container justify="center">
-        <Fab onClick={addAccount}>Add Bank Account</Fab>
+      <Grid container justify="space-between">
+        {/* <Fab onClick={addAccount}>Add Bank Account</Fab> */}
+        <Budget />
+        <TransactionsList />
       </Grid>
     </div>
   );
