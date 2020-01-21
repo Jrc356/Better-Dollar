@@ -2,7 +2,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Fab, Grid } from '@material-ui/core';
-import envvar from 'envvar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
