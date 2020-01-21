@@ -30,7 +30,11 @@ let ACCESS_TOKEN = null;
 let ITEM_ID = null;
 
 const app = next({dev: DEV});
-const handle = app.getRequestHandler()
+const handle = app.getRequestHandler();
+
+const prettyPrintResponse = (response) => {
+  console.log(util.inspect(response, { colors: true, depth: 4 }));
+};
 
 app.prepare().then(() => {
   const server = express();
@@ -39,13 +43,13 @@ app.prepare().then(() => {
     extended: false,
   }));
   server.use(bodyParser.json());
-  
-  const prettyPrintResponse = (response) => {
-    console.log(util.inspect(response, { colors: true, depth: 4 }));
-  };
-  
+
   server.post('/get_access_token', (req, res) => {
+    console.log('> Received public token request');
+    prettyPrintResponse(req);
     const PUBLIC_TOKEN = req.body.public_token;
+
+    console.log('Retrieving access token...');
     client.exchangePublicToken(PUBLIC_TOKEN, (error, tokenResponse) => {
       if (error != null) {
         prettyPrintResponse(error);
@@ -55,7 +59,7 @@ app.prepare().then(() => {
       }
       ACCESS_TOKEN = tokenResponse.access_token;
       ITEM_ID = tokenResponse.item_id;
-      prettyPrintResponse(tokenResponse);
+      console.log('> Token retreived');
       return res.json({
         access_token: ACCESS_TOKEN,
         item_id: ITEM_ID,
@@ -63,7 +67,7 @@ app.prepare().then(() => {
       });
     });
   });
-  
+
   // Retrieve real-time Balances for each of an Item's accounts
   // https://plaid.com/docs/#balance
   server.get('/balance', (req, res) => {
@@ -78,7 +82,7 @@ app.prepare().then(() => {
       return res.json({ error: null, balance: balanceResponse });
     });
   });
-  
+
   // Retrieve Transactions for an Item
   // https://plaid.com/docs/#transactions
   server.get('/transactions', (req, res) => {
@@ -90,7 +94,7 @@ app.prepare().then(() => {
       offset: 0,
     }, (error, transactionsResponse) => {
       const answer = {};
-  
+
       if (error != null) {
         prettyPrintResponse(error);
         answer.error = error;
@@ -99,11 +103,11 @@ app.prepare().then(() => {
         answer.error = null;
         answer.transactions = transactionsResponse;
       }
-  
+
       return res.json(answer);
     });
   });
-  
+
   // Retrieve an Item's accounts
   // https://plaid.com/docs/#accounts
   server.get('/accounts', (req, res) => {
@@ -118,14 +122,11 @@ app.prepare().then(() => {
       return res.json({ error: null, accounts: accountsResponse });
     });
   });
-  
-  server.all('*', (req, res) => {
-    return handle(req, res);
-  })
+
+  server.all('*', (req, res) => { return handle(req, res); });
 
   server.listen(APP_PORT, err => {
     if (err) throw err;
     console.log(`> server listening on port ${APP_PORT}`);
   });
-})
-
+});
