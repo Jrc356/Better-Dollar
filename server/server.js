@@ -29,7 +29,7 @@ const client = new plaid.Client(
 let ACCESS_TOKEN = null;
 let ITEM_ID = null;
 
-const app = next({dev: DEV});
+const app = next({ dev: DEV });
 const handle = app.getRequestHandler();
 
 const prettyPrintResponse = (response) => {

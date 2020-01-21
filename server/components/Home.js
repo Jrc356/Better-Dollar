@@ -5,7 +5,7 @@ import { Fab, Grid } from '@material-ui/core';
 import Budget from './Budget/Budget';
 import TransactionsList from './Transactions/TransactionsList';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     paddingTop: 50,

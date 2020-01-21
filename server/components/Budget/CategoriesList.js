@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { List } from '@material-ui/core';
 import Category from './Category';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },

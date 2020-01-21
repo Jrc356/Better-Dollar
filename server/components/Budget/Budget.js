@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import CategoriesList from './CategoriesList';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
