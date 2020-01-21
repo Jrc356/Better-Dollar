@@ -46,7 +46,10 @@ app.prepare().then(() => {
 
   server.post('/get_access_token', (req, res) => {
     console.log('> Received public token request');
-    prettyPrintResponse(req);
+    console.log('> headers:');
+    prettyPrintResponse(req.headers);
+    console.log('> body:');
+    prettyPrintResponse(req.body);
     const PUBLIC_TOKEN = req.body.public_token;
 
     console.log('Retrieving access token...');
@@ -60,6 +63,7 @@ app.prepare().then(() => {
       ACCESS_TOKEN = tokenResponse.access_token;
       ITEM_ID = tokenResponse.item_id;
       console.log('> Token retreived');
+      prettyPrintResponse(tokenResponse);
       return res.json({
         access_token: ACCESS_TOKEN,
         item_id: ITEM_ID,
