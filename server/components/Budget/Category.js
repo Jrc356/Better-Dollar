@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { Paper, Divider } from '@material-ui/core';
-import CategoryItem from './CategoryItem';
+import Expense from './Expense';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +28,9 @@ export default function Category(props) {
       <Paper className={classes.paper}>
         <h4 textalign="center">{label}</h4>
         <Divider />
-        {items.map((item) => <CategoryItem key={item} label={item} />)}
+        {items.map((item) => <Expense key={item} label={item} />)}
         <Divider light variant="middle" />
-        <CategoryItem label="Add New" />
+        <Expense label="Add New" />
       </Paper>
       <br />
     </div>

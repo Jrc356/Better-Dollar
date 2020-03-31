@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { ListItem, ListItemText } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-  }
+  },
 }));
 
-export default function CategoryItem(props) {
+export default function Expense(props) {
   const { label } = props;
 
   const classes = useStyles();
@@ -24,6 +24,6 @@ export default function CategoryItem(props) {
   );
 }
 
-CategoryItem.propTypes = {
+Expense.propTypes = {
   label: PropTypes.string.isRequired,
 };
