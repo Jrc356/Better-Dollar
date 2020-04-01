@@ -1,5 +1,5 @@
 {
-  "name": "BetterDollar-server",
+  "name": "betterdollar-server",
   "version": "0.1.0",
   "main": "server.js",
   "description": "server for better dollar app",
@@ -25,6 +25,8 @@
     "plaid": "^4.3.0",
     "prop-types": "^15.7.2",
     "react": "16.12.0",
+    "react-dnd": "^10.0.2",
+    "react-dnd-html5-backend": "^10.0.2",
     "react-dom": "16.12.0"
   },
   "devDependencies": {
